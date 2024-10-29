@@ -1,0 +1,44 @@
+<core:FragmentDefinition
+xmlns="sap.m"
+xmlns:core="sap.ui.core"
+xmlns:f="sap.ui.layout.form">
+
+    <Dialog id="updateDialog" title="{i18n>hello}">
+    <VBox id="updateVBox" class="sapUiSmallMargin">
+        <f:SimpleForm id="updateForm"
+            editable="true"
+            layout="ColumnLayout"
+            title="{i18n>whatToAdd}"
+            columnsM="2"
+            columnsL="3"
+            columnsXL="4" >
+
+            <f:content>
+                <Label id="titleUpdateLabel" text="{i18n>titleField}"/>
+                <Input id="UpdateTitle" value="{updateModel>/title}"/>
+
+                <Label id="descriptionUpdateLabel" text="{i18n>desField}"/>
+                <Input id="UpdateDescription" value="{updateModel>/description}"/>
+
+                <Label id="dueDateUpdateLabel" text="{i18n>dueDateField}"/>
+                <Input id="UpdateDuedate" value="{updateModel>/duedate}"/>
+
+                <Label id="statusUpdateLabel" text="{i18n>statusField}"/>
+                <CheckBox id="UpdateStatusCheckbox" selected="{updateModel>/status}"/>
+            
+            </f:content>
+
+        </f:SimpleForm>
+    </VBox>
+
+    <beginButton>
+        <Button id="updateButton" text="{i18n>create}" type="Emphasized" press="onUpdate" />
+    </beginButton>
+
+    <endButton>
+        <Button id="cancelUpdateButton" text="{i18n>cancel}" type="Emphasized" press="onCancelUpdate" />
+    </endButton>
+
+    </Dialog>
+
+</core:FragmentDefinition>

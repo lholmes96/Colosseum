@@ -1,0 +1,44 @@
+<core:FragmentDefinition
+xmlns="sap.m"
+xmlns:core="sap.ui.core"
+xmlns:f="sap.ui.layout.form">
+
+    <Dialog id="Dialog" title="{i18n>hello}">
+    <VBox id="dialogVBox" class="sapUiSmallMargin">
+        <f:SimpleForm id="createForm"
+            editable="true"
+            layout="ColumnLayout"
+            title="{i18n>whatToAdd}"
+            columnsM="2"
+            columnsL="3"
+            columnsXL="4" >
+
+            <f:content>
+                <Label id="titleLabel" text="{i18n>titleField}"/>
+                <Input id="title" value="{dialogModel>/title}"/>
+
+                <Label id="descriptionLabel" text="{i18n>desField}"/>
+                <Input id="description" value="{dialogModel>/description}"/>
+
+                <Label id="dueDateLabel" text="{i18n>dueDateField}"/>
+                <Input id="duedate" value="{dialogModel>/duedate}"/>
+
+                <Label id="statusLabel" text="{i18n>statusField}"/>
+                <CheckBox id="statusCheckbox" selected="{dialogModel>/status}"/>
+            
+            </f:content>
+
+        </f:SimpleForm>
+    </VBox>
+
+    <beginButton>
+        <Button id="createButton" text="{i18n>create}" type="Emphasized" press="onItemCreate" />
+    </beginButton>
+
+    <endButton>
+        <Button id="cancelButton" text="{i18n>cancel}" type="Emphasized" press="onCreateItemCancel" />
+    </endButton>
+
+    </Dialog>
+
+</core:FragmentDefinition>

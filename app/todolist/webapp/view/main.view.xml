@@ -1,0 +1,49 @@
+<mvc:View controllerName="todolist.todolist.controller.main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:layout="sap.ui.layout">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <layout:Grid id="Grid" defaultSpan="L12 M12 S12">
+                <HBox id="hBox1">
+                    <Input id="Input" placeholder="{i18n>enterName}" width="90%" value="{localValueModel>/addInput}" class="sapUiSmallMargin"/>
+                    <Button id="inputButton" text="{i18n>add}" press="onItemAdd" class="sapUiSmallMargin"/>
+                </HBox>
+                <VBox id="hBox2">
+                    <layoutData>
+                        <layout:GridData id="gridData" indent="L1 M1 S1" span="L10 M10 S10"/>
+                    </layoutData>
+                    <List id="mainList" items="{
+                                                path: '/Tasks',
+                                                parameters: { $$updateGroupId : 'taskGroup' }
+                                                }"
+                            mode="SingleSelectMaster">
+                        <headerToolbar>
+                            <Toolbar id="buttonToolbar">
+                                <ToolbarSpacer id="spacer"/>
+                                <Button id="editButton" icon="sap-icon://edit" press="onUpdateItem" type="Critical" />
+                                <Button id="deleteButton" icon="sap-icon://delete" press="onItemDelete" type="Reject" />
+                            </Toolbar>
+                        
+                        </headerToolbar>
+                        <items>
+                            <ObjectListItem id="objList"
+                                title="{title}"
+                                number="{duedate}">
+                                <firstStatus>
+                                    <ObjectStatus id="status" text="{status}" state="{=${status}===true ? 'Success' : 'Warning'}"
+                                    />
+                                </firstStatus>
+                                <attributes>
+                                    <ObjectAttribute id="attribute" text="{description}" />
+                                </attributes>
+                            </ObjectListItem>
+
+                        </items>
+                    </List>
+                </VBox>
+            </layout:Grid>
+        </content>
+    </Page>
+</mvc:View>
