@@ -44,8 +44,10 @@ function (Controller, MessageToast, JSONModel) {
                });
             }
 
+            var iNewId = this.getNewId();
+
             this.pDialog.then(function(oDialog){
-                var oNewItemModel = new JSONModel();
+                var oNewItemModel = new JSONModel({title: "", description: "", duedate: "YYYY-MM-DD", status:false, id: iNewId});
                 oDialog.setModel(oNewItemModel, "dialogModel");
                 oDialog.open();
             });
@@ -103,25 +105,38 @@ function (Controller, MessageToast, JSONModel) {
             });
         },
 
-        onUpdate: function(oEvent){
-            this.editTaskDialog.then(function(oDialog){
+        onUpdate: function(oEvent)
+        {
+
+            this.editTaskDialog.then(function(oDialog) {
+
+                var iId = this.byId("mainList").getSelectedItem("mainList").getBindingContext().getObject().id;
 
                 var oSelected = this.byId("mainList").getSelectedItem();
 
-                if(oSelected){
+                if (oSelected){
                     const oContext = oSelected.getBindingContext();
                     oContext.delete();
                 }
 
                 const oNewItemModel = oDialog.getModel("updateModel");
-                const oList =this.getView().byId("mainList");
-                const oBinding = oList.getBinding("items");
+                const oList = this.getView().byId("mainList");
+                const oBinding = oList.getBinding("items"); 
                 oBinding.create(oNewItemModel.getData());
 
                 this.getView().getModel().submitBatch("taskGroup");
 
-                oDialog.close();
-            });
+                oDialog.close(); 
+
+                
+            }.bind(this));
+        },
+
+        getNewId: function() {
+            const oList = this.byId("mainList");
+            const aItems = oList.getItems();
+            const iNewId = aItems.length;
+            return iNewId + 1;
         },
 
     });

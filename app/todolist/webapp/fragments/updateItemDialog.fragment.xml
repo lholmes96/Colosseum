@@ -32,7 +32,7 @@ xmlns:f="sap.ui.layout.form">
     </VBox>
 
     <beginButton>
-        <Button id="updateButton" text="{i18n>create}" type="Emphasized" press="onUpdate" />
+        <Button id="updateButton" text="{i18n>update}" type="Emphasized" press="onUpdate" />
     </beginButton>
 
     <endButton>

@@ -1,7 +1,7 @@
 namespace my.todoapp;
 
 entity Tasks {
-  key ID : Integer;
+  key id : Integer;
   title  : String;
   description  : String;
   duedate: Date;
